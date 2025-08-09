@@ -15,44 +15,71 @@ var users = [{
 
 }]
 
+app.use(express.json());
+
 app.get('/', (req, res)=>{
     const name = req.query.name;
-    const reqd = users.filter((user)=>user.Pname==name);
-    const ans = 0;
-    if(reqd.kidney[0][healthy]) ans+=1; 
-    if(reqd.kidney[1][healthy]) ans+=1; 
+    const reqd = users.find((user)=>user.Pname==name);
+    var ans = 0;
+    for(let i = 0; i <reqd.kidney.length;i++){
+
+        if(reqd.kidney[i].healthy) ans+=1; 
+    }
+     
     res.send(`no. of healthy kidney : ${reqd.kidney.length} out of which ${ans} works fine`)
 })
 
-app.post('/post', (req, res) =>{
-    const name = req.query.name;
-    const reqd = users.filter((user)=>user.name=="Deepali");
-    reqd.kidney.append({healthy:true});
-    res.send(`new kidney length is: ${reqd.kidney.length}`);
+app.post('/', (req, res) =>{
+    const isHealthy = req.body.isHealthy;
+    users[0].kidney.push({healthy:isHealthy})
+    res.json({
+        msg:"done"
+    })
 
 })
 
-app.put('/put', (req, res)=>{
-    const name = req.query.name;
-    const kidneyNum = req.query.kidneyNum;
-    const reqd = users.filter((user)=>user.name=="Deepali");
-    reqd.kidney[0].kidneyNum=true;
-    res.send(`${kidneyNum} is healthy now`)
+app.put('/', (req, res)=>{
+    for (let i = 0; i < users[0].kidney.length;i++) {
+        users[0].kidney[i].healthy = true;
+        res.json({})
+    }
+   
 
 })
 
-app.delete('del', (req,res) =>{
-     const name = req.query.name;
-     const kidneyNum = req.query.kidneyNum;
-     const reqd = users.filter((user)=>user.name=="Deepali");
-     reqd.delete(kidneyNum);
-     res.send("deleted successfully kidney");
+app.delete('/', (req,res) =>{
+
+    if(isUnhealthy()){
+
+        const name = req.query.name;
+        
+        const reqd = users.find((user)=>user.Pname==name);
+        
+        reqd.kidney=reqd.kidney.filter((val)=>val.healthy != false);
+   
+        
+        res.send("deleted successfully kidney");
+        console.log((reqd));
+        res.json({msg:"deleted successfully kidney"});
+    } 
+    else{
+        res.json({msg:"you dont have unhealthy kidney"});
+    }
+     
 
     
     
     
 
 })
+function isUnhealthy(){
+    let present = false;
+    for(let i = 0; i< users[0].kidney.length; i++) {
+        if(users[0].kidney.isHealthy === false) return true;
+
+    }
+    return false;
+}
 
 
 app.listen(port);
