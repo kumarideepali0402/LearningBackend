@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=input, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input oninput="debounce()"id = "inp1"type="text"></br>
+    <input oninput="debounce()" id = "inp2" type="text"></br>
+    <button >Calc Sum</button>
+
+    
+    <script>
+        let timeout ;
+
+        function debounce(){
+            clearInterval(timeout);
+            timeout = setInterval(populateSum,1000);
+
+        }
+       async function populateSum(){
+        const a = document.getElementById("inp1").value;
+        const b = document.getElementById("inp2").value;
+
+        const response = await fetch(`http://localhost:3000/sum/?a=${a}&b=${b}`);
+        const data = await response.text();
+        console.log(data);
+        
+
+        }
+    </script>
+    
+</body>
+</html>
