@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { replace, useLocation, useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 
 export default function RefreshHandler({setIsAuthenticated}) {
     const location = useLocation();

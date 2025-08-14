@@ -1,73 +1,92 @@
 *,
 ::before,
-::after{
-    box-sizing : border-box;
-    padding:0;
-    margin : 0;
+::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
 
-label{
-    font-size: 20px;
+label {
+    font-size: 18px;
+    font-weight: 500;
+    color: #2d2d2d;
+    font-family: "Poppins", sans-serif;
 }
 
 html,
-body{
+body {
     height: 100%;
     width: 100%;
+    font-family: "Poppins", sans-serif;
+    background-color: #f4f4f9;
 }
 
-body{
+body {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.container{
+.container {
     background-color: #fff;
     padding: 32px 48px;
-    border-radius:10px;
-    width:100%;
+    border-radius: 10px;
+    width: 100%;
     max-width: 400px;
-    box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-.container > h1{
-    margin-bottom:  20px;
-
+.container > h1 {
+    margin-bottom: 20px;
+    font-size: 26px;
+    font-weight: 600;
+    color: #4b0082;
 }
-.container > form{
+
+.container > form {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.container div{
-
+.container div {
     display: flex;
     flex-direction: column;
 }
 
-.container input{
+.container input {
     width: 100%;
-    font-size: 20px;
+    font-size: 16px;
     padding: 10px;
-    border:none;
-    border-bottom:1px solid black;
-    outline:none;
+    border: none;
+    border-bottom: 1px solid #bbb;
+    outline: none;
+    transition: border-color 0.3s ease;
 }
 
-.container input::placeholder{
-    font-size : 12px;
-    font-style:italic;
+.container input:focus {
+    border-bottom: 1px solid #4b0082;
 }
 
-button{
-    background-color: purple;
-    border:none;
-    font-size: 20px;
+.container input::placeholder {
+    font-size: 12px;
+    font-style: italic;
+    color: #888;
+}
+
+button {
+    background-color: #6a0dad;
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
     color: white;
     border-radius: 5px;
-    padding : 10px;
+    padding: 10px;
     cursor: pointer;
     margin: 10px 0;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #580d8c;
 }
