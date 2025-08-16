@@ -41,17 +41,17 @@ function Signup() {
                 body : JSON.stringify(signupInfo)
             });
             const result = await response.json();
-            const { success, message, error} = result;
-            if(success){
+            const { msg} = result;
+            if(msg){
                 console.log('getting triggered');
                 
-                handleSuccess(message);
+                handleSuccess(msg);
                 setTimeout(()=>{
                     navigate('/login')
                 }, 1000);
             }
             else if(error) {
-                const details = error?.details[0].message;
+                const details = error?.details[0].msg;
                 handleError(details);
             }else if(!success){
                 handleError(message);

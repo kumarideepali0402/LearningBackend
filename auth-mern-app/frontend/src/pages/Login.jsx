@@ -41,11 +41,11 @@ function Login() {
                 body : JSON.stringify(loginInfo)
             });
             const result = await response.json();
-            const { success, message,name,jwtToken, error} = result;
+            const { success, msg ,name,jwtToken, error} = result;
             if(success){
                 console.log('getting triggered');
                 
-                handleSuccess(message);
+                handleSuccess(msg);
                 localStorage.setItem('token', jwtToken);
                 localStorage.setItem('loggedInUser', name);
                 setTimeout(()=>{
@@ -53,10 +53,10 @@ function Login() {
                 }, 1000);
             }
             else if(error) {
-                const details = error?.details[0].message;
+                const details = error?.details[0].msg;
                 handleError(details);
-            }else if(!success){
-                handleError(message);
+            }else {
+                handleError(msg);
             }
             console.log(result);
             
